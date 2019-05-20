@@ -59,7 +59,6 @@ echo "---------------------------------------------------------------"
 read -p "Press Any Key To Return"
 cd ..
 echo "[Online Db Lookup Methods]"
-read -p "Enter@Hash:-" hsh
 echo "****HASH-BUSTER********"
 python3 hash1.py -s $hsh
 read -p "Press Any Key For Next Cheak"
@@ -70,7 +69,7 @@ echo "+++++++++++++++++++++++++++++++"
 curl https://www.nitrxgen.net/md5db/$hsh
 read -p "Press Any Key To Return"
 echo "[Bruteforce Methods]"
-python hashjack.py --hash $ --wordlist Numb.txt
+python hashjack.py --hash $hsh --wordlist Numb.txt
 hold=' '
 printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
 tty_state=$(stty -g)
@@ -79,7 +78,7 @@ until [ -z "${hold#$in}" ] ; do
     in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
 done
 stty "$tty_state"
-python hashjack.py --hash $ --wordlist bigword.txt
+python hashjack.py --hash $hsh --wordlist bigword.txt
 read -p "press any Key To Return"
 
 
