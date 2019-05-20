@@ -1,0 +1,151 @@
+#!/bin/bash
+cyan='\e[0;36m'
+lightcyan='\e[96m'
+green='\e[0;32m'
+lightgreen='\e[1;32m'
+white='\e[1;37m'
+red='\e[1;31m'
+yellow='\e[1;33m'
+blue='\e[1;34m'
+function main_menu()
+{
+    while :
+    do
+echo -ne "\033]0;HashCk\007"
+resize -s 25 109
+clear
+echo -e """ 
+                    ${red}██╗  ██╗ █████╗ ███████╗██╗  ██╗ ██████╗██╗  ██╗
+                    ${yellow}██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██║ ██╔╝
+                    ${green}███████║███████║███████╗███████║██║     █████╔╝ 
+                    ${blue}██╔══██║██╔══██║╚════██║██╔══██║██║     ██╔═██╗ 
+                    ${lightgreen}██║  ██║██║  ██║███████║██║  ██║╚██████╗██║  ██╗[JoyGhosh]
+                    ${cyne}╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                    --------------------------------------------------
+                    | AUTOMATED HASHCRACKING TOOL  |||||||||||||||||||
+                    --------------------------------------------------
+                                                
+"""
+echo -e """
+                   f]Add Requirements Before Using
+                   1]Crack Hash Using Known Hashlist(Private Method)
+                   2]Crack Hash Using Bruteforce
+                   3]Online Based Hash Cheak
+                   4]Use All(Takes Time)(Auto)
+"""
+read -p "root@HashCk:~ " option
+case "$option" in
+              f)clear
+cd modules
+echo "++AnaLyzing HashCk++"
+chmod +x *
+sleep 1
+echo "Generating Wordlists"
+crunch 4 6 1234567890 -o Numb.txt
+echo "Finished Generating Wordlist"
+echo "+*+*+*+*+*+*+*+*+*+*+*+*+*+*"
+echo "Downloading WOrdDb"
+wget https://www.dropbox.com/s/jwi4va9vfancx5q/worddb.zip
+echo "Unzipping Worddb"
+unzip worddb.zip
+echo "Installing Python Modules"
+pip install -r requirements.txt
+cd knowndb
+echo "Downloading Hashckdb"
+wget https://www.dropbox.com/s/xb9gjz6h3os8bbv/hashckdb.zip
+echo "Unziping Hashckdb"
+unzip hashckdb.zip
+cd ..
+cd ..
+
+
+;;
+              1)clear
+echo -e """ 
+                    ${red}██╗  ██╗ █████╗ ███████╗██╗  ██╗ ██████╗██╗  ██╗
+                    ${yellow}██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██║ ██╔╝
+                    ${green}███████║███████║███████╗███████║██║     █████╔╝ 
+                    ${blue}██╔══██║██╔══██║╚════██║██╔══██║██║     ██╔═██╗ 
+                    ${lightgreen}██║  ██║██║  ██║███████║██║  ██║╚██████╗██║  ██╗ [JoyGhosh]
+                    ${cyne}╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                    --------------------------------------------------
+                    | AUTOMATED HASHCRACKING TOOLS |||||||||||||||||||
+                    --------------------------------------------------
+                    |||||||||||||||||| KNOWN HASHES ||||||||||||||||||
+                    --------------------------------------------------
+                                                
+"""
+read -p "Enter@Hash:-" hsh
+cd modules/knowndb
+echo  "***************************************************************"
+echo  "Hash<==>Plaintext"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" knownhashes
+grep -w "$hsh" hashplain
+grep -w "$hsh" hashplain2
+grep -w "$hsh" hashplain3
+grep -w "$hsh" hashplain4
+grep -w "$hsh" hashplain4
+echo -e "${green}*"
+echo  "---------------------------------------------------------------"
+echo  "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo  "***************************************************************"
+echo "Plaintext<==>Hash"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" rkownhashes
+echo -e "${green}*"
+echo "---------------------------------------------------------------"
+echo "---------------------------------------------------------------"
+echo  "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo  "***************************************************************"
+echo "Hash<==>Hash<==>Plaintext"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" hashplain3
+echo -e "${green}*"
+echo "---------------------------------------------------------------"
+echo "---------------------------------------------------------------"
+read -p "Press Any Key To Return"
+cd ..
+cd ..
+;;
+                         2)clear
+                          cd modules
+                          ./md5crack
+                           ;;
+3)clear
+echo -e """ 
+                    ${red}██╗  ██╗ █████╗ ███████╗██╗  ██╗ ██████╗██╗  ██╗
+                    ${yellow}██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██║ ██╔╝
+                    ${green}███████║███████║███████╗███████║██║     █████╔╝ 
+                    ${blue}██╔══██║██╔══██║╚════██║██╔══██║██║     ██╔═██╗ 
+                    ${lightgreen}██║  ██║██║  ██║███████║██║  ██║╚██████╗██║  ██╗ [JoyGhosh]
+                    ${cyne}╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                    --------------------------------------------------
+                    | AUTOMATED HASHCRACKING TOOLS |||||||||||||||||||
+                    --------------------------------------------------
+                    |||||||||||||| Online Based Hash Cheak||||||||||||
+                    --------------------------------------------------
+                                                
+"""
+cd modules
+read -p "Enter@Hash:-" hsh
+echo "****HASH-BUSTER********"
+python3 hash1.py -s $hsh
+read -p "Press Any Key For Next Cheak"
+echo "*****PYBOJOCRACK********"
+python pybozocrack.py -s $hsh
+echo "******NITRXGEN DATABASE******"
+echo "+++++++++++++++++++++++++++++++"
+curl https://www.nitrxgen.net/md5db/$hsh
+read -p "Press Any Key To Return"
+cd ..
+;;
+4)./all
+;;
+          esac
+    done
+}
+main_menu
