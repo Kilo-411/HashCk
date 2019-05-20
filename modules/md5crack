@@ -1,0 +1,96 @@
+#!/bin/bash
+cyan='\e[0;36m'
+lightcyan='\e[96m'
+green='\e[0;32m'
+lightgreen='\e[1;32m'
+white='\e[1;37m'
+red='\e[1;31m'
+yellow='\e[1;33m'
+blue='\e[1;34m'
+
+mdc="112x30"
+function second_menu()
+{
+    while :
+    do
+echo -ne "\033]0;HashCk\007"
+clear
+echo -e """ 
+                    ${red}██╗  ██╗ █████╗ ███████╗██╗  ██╗ ██████╗██╗  ██╗
+                    ${yellow}██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██║ ██╔╝
+                    ${green}███████║███████║███████╗███████║██║     █████╔╝ 
+                    ${blue}██╔══██║██╔══██║╚════██║██╔══██║██║     ██╔═██╗ 
+                    ${lightgreen}██║  ██║██║  ██║███████║██║  ██║╚██████╗██║  ██╗ [JoyGhosh]
+                    ${cyne}╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                    --------------------------------------------------
+                    | AUTOMATED HASHCRACKING TOOLS |||||||||||||||||||
+                    --------------------------------------------------
+                    ||||||||||||||||||Bruteforce Crack||||||||||||||||
+                    --------------------------------------------------
+                                                
+"""
+echo """
+                    1.Md5 Bruteforce Automate
+                    2.Md5 Bruteforce Custom Wordlist
+                    3.Md5 Salt Hash Cracker(Custom Wordlist)
+                    4.Md5-sha-1-sha-224-sha-256-sha-384-sha-512-mysql-4.1+
+                    5.4th Method With Custom Wordlist
+                    m.Main Menu
+
+"""
+read -p "Enter@option:-" opti
+case "$opti" in
+1)read -p "Enter@Hash:-" hsh
+xterm -hold -bg black -fg red -geometry "${mdc}" -T "HashCk" -e "./md5crack.sh Numb.txt $hsh"
+hold=' '
+printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
+tty_state=$(stty -g)
+stty -icanon
+until [ -z "${hold#$in}" ] ; do
+    in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
+done
+stty "$tty_state"
+xterm -hold -bg black -fg red -geometry "${mdc}" -T "HashCk" -e "./md5crack.sh bigword.txt $hsh"
+hold=' '
+printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
+tty_state=$(stty -g)
+stty -icanon
+until [ -z "${hold#$in}" ] ; do
+    in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
+done
+stty "$tty_state"
+;;
+2)read -p "Enter@Hash:-" hsh
+ read -p "Enter@Wordlist Path(or Name):-" wordl
+gnome-terminal -- ./md5crack.sh $wordl $hsh
+read -p "Press Any Key To Return"
+;;
+3)read -p "Enter@Hash:-" hsh
+ read -p "Enter@Wordlist Path(or Name):-" wordl
+read -p "Enter Left Salt:" lsa
+read -p "Enter Right Salt:" rsa
+php crack.php -w $wordl -c $hsh -t md5 -l $lsa -r $rsa
+read -p "Press Any Key To Return"
+;;
+4)read -p "Enter@Hash:-" hsh
+python hashjack.py --hash $ --wordlist Numb.txt
+hold=' '
+printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
+tty_state=$(stty -g)
+stty -icanon
+until [ -z "${hold#$in}" ] ; do
+    in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
+done
+stty "$tty_state"
+python hashjack.py --hash $ --wordlist bigword.txt
+read -p "press any Key To Return"
+;;
+m)cd ..
+./hashck
+;;
+                 
+          esac
+    done
+}
+second_menu
+             

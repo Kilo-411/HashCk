@@ -1,0 +1,85 @@
+#!/bin/bash
+cyan='\e[0;36m'
+lightcyan='\e[96m'
+green='\e[0;32m'
+lightgreen='\e[1;32m'
+white='\e[1;37m'
+red='\e[1;31m'
+yellow='\e[1;33m'
+blue='\e[1;34m'
+echo -ne "\033]0;HashCk\007"
+resize -s 25 109
+clear
+echo -e """ 
+                    ${red}██╗  ██╗ █████╗ ███████╗██╗  ██╗ ██████╗██╗  ██╗
+                    ${yellow}██║  ██║██╔══██╗██╔════╝██║  ██║██╔════╝██║ ██╔╝
+                    ${green}███████║███████║███████╗███████║██║     █████╔╝ 
+                    ${blue}██╔══██║██╔══██║╚════██║██╔══██║██║     ██╔═██╗ 
+                    ${lightgreen}██║  ██║██║  ██║███████║██║  ██║╚██████╗██║  ██╗[JoyGhosh]
+                    ${cyne}╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                    --------------------------------------------------
+                    | TEST ALL METHODS             |||||||||||||||||||
+                    --------------------------------------------------
+                                                
+"""
+echo "[STARTED TESTING ALL METHODS]"
+read -p "Enter@Hash:-" hsh
+cd knowndb
+echo "[Kowndb Methods]"
+echo  "***************************************************************"
+echo  "Hash<==>Plaintext"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" knownhashes
+grep -w "$hsh" hashplain
+grep -w "$hsh" hashplain2
+grep -w "$hsh" hashplain3
+grep -w "$hsh" hashplain4
+grep -w "$hsh" hashplain4
+echo -e "${green}*"
+echo  "---------------------------------------------------------------"
+echo  "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo  "***************************************************************"
+echo "Plaintext<==>Hash"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" rkownhashes
+echo -e "${green}*"
+echo "---------------------------------------------------------------"
+echo "---------------------------------------------------------------"
+echo  "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo  "***************************************************************"
+echo "Hash<==>Hash<==>Plaintext"
+echo  "***************************************************************"
+echo -e "${red}*"
+grep -w "$hsh" hashplain3
+echo -e "${green}*"
+echo "---------------------------------------------------------------"
+echo "---------------------------------------------------------------"
+read -p "Press Any Key To Return"
+cd ..
+echo "[Online Db Lookup Methods]"
+read -p "Enter@Hash:-" hsh
+echo "****HASH-BUSTER********"
+python3 hash1.py -s $hsh
+read -p "Press Any Key For Next Cheak"
+echo "*****PYBOJOCRACK********"
+python pybozocrack.py -s $hsh
+echo "******NITRXGEN DATABASE******"
+echo "+++++++++++++++++++++++++++++++"
+curl https://www.nitrxgen.net/md5db/$hsh
+read -p "Press Any Key To Return"
+echo "[Bruteforce Methods]"
+python hashjack.py --hash $ --wordlist Numb.txt
+hold=' '
+printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
+tty_state=$(stty -g)
+stty -icanon
+until [ -z "${hold#$in}" ] ; do
+    in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
+done
+stty "$tty_state"
+python hashjack.py --hash $ --wordlist bigword.txt
+read -p "press any Key To Return"
+
+
