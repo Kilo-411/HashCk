@@ -1,4 +1,6 @@
 #!/bin/bash
+# CREATED BY JOYGHOSH
+# HASHCK 2019
 cyan='\e[0;36m'
 lightcyan='\e[96m'
 green='\e[0;32m'
@@ -73,7 +75,7 @@ php crack.php -w $wordl -c $hsh -t md5 -l $lsa -r $rsa
 read -p "Press Any Key To Return"
 ;;
 4)read -p "Enter@Hash:-" hsh
-python hashjack.py --hash $ --wordlist Numb.txt
+python hashjack.py --hash $hsh --wordlist Numb.txt
 hold=' '
 printf "Press 'SPACE' to continue or 'CTRL+C' to exit : "
 tty_state=$(stty -g)
@@ -82,8 +84,12 @@ until [ -z "${hold#$in}" ] ; do
     in=$(dd bs=1 count=1 </dev/tty 2>/dev/null)
 done
 stty "$tty_state"
-python hashjack.py --hash $ --wordlist bigword.txt
+python hashjack.py --hash $hsh --wordlist bigword.txt
 read -p "press any Key To Return"
+;;
+5)read -p "Enter@Hash:-" hsh
+ read -p "Enter@Wordlist Path(or Name):-" wordl
+python hashjack.py --hash $hsh --wordlist $wordl
 ;;
 m)cd ..
 ./hashck
