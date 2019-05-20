@@ -50,6 +50,7 @@ echo "Unzipping Worddb"
 unzip worddb.zip
 echo "Installing Python Modules"
 pip install -r requirements.txt
+mkdir knowndb
 cd knowndb
 echo "Downloading Hashckdb"
 wget https://www.dropbox.com/s/xb9gjz6h3os8bbv/hashckdb.zip
